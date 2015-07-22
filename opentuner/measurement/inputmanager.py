@@ -3,11 +3,10 @@ import opentuner
 from opentuner.resultsdb.models import *
 
 
-class InputManager(object):
+class InputManager(object, metaclass=abc.ABCMeta):
   """
   abstract base class for compile and measurement
   """
-  __metaclass__ = abc.ABCMeta
 
   def set_driver(self, measurement_driver):
     self.driver = measurement_driver

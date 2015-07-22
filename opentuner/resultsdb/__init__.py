@@ -1,6 +1,6 @@
 
-from connect import connect
+from .connect import connect
 
-import models
+from . import models
 
 

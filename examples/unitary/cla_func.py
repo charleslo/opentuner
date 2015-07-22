@@ -80,8 +80,8 @@ class Op:
     # in case one isn't unitary the program stops
     for k in range(len(self.M)):
       if (np.trace(self.M[k] * self.M[k].getH()) - 2 != 0):
-        print "Operator " + self.name[k] + " (no. " + str(
-          k) + ") isn't unitary!"
+        print("Operator " + self.name[k] + " (no. " + str(
+          k) + ") isn't unitary!")
         exit()
 
   def determine_index_of_mutation_partners(self):
@@ -106,8 +106,8 @@ class Op:
           found_operator = True
 
       if found_operator == False:
-        print "Couldn't find the anti-operator for operator " + self.name[
-          k] + " (no " + str(k) + ")"
+        print("Couldn't find the anti-operator for operator " + self.name[
+          k] + " (no " + str(k) + ")")
 
   def __str__(self):
     # just a test to play around

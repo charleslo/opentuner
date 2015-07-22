@@ -1,6 +1,6 @@
 
-import driver
-import interface
-from interface import MeasurementInterface
-from driver import MeasurementDriver
+from . import driver
+from . import interface
+from .interface import MeasurementInterface
+from .driver import MeasurementDriver
 

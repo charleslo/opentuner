@@ -196,8 +196,8 @@ class MeasurementDriver(DriverBase):
         self.run_desired_result(dr, compile_result, dr.id)
         try:
           self.interface.cleanup(dr.id)
-        except RuntimeError, e:
-          print e
+        except RuntimeError as e:
+          print(e)
           # print 'Done!'
     else:
       for dr in q.all():

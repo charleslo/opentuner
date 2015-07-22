@@ -44,7 +44,7 @@ class TSP(MeasurementInterface):
 
     def manipulator(self):
         manipulator = ConfigurationManipulator()
-        manipulator.add_parameter(PermutationParameter(0, range(len(self.distance))))
+        manipulator.add_parameter(PermutationParameter(0, list(range(len(self.distance)))))
         return manipulator
 
     def solution(self):

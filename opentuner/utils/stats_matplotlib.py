@@ -1,7 +1,7 @@
 #!usr/bin/python
 
 if __name__ == '__main__':
-  import adddeps
+  from . import adddeps
 
 import itertools
 import math
@@ -17,7 +17,7 @@ from fn import Stream
 from fn.iters import repeat
 from opentuner import resultsdb
 
-PCTSTEPS = map(_/20.0, xrange(21))
+PCTSTEPS = list(map(_/20.0, range(21)))
 
 
 def mean(vals):
@@ -65,8 +65,8 @@ def get_dbs(path, db_type='sqlite:///'):
       e, sm = resultsdb.connect(db_type + db_path)
       dbs.append(sm())
     except Exception as e:
-      print e
-      print "Error encountered while connecting to db"
+      print(e)
+      print("Error encountered while connecting to db")
   return dbs
 
 
@@ -95,9 +95,9 @@ def matplotlibplot_file(labels, xlim = None, ylim = None, disp_types=['median'])
         cols = [1]
         data = mean_values
       elif disp_type == 'all_percentiles':
-        cols = range(1,22)
+        cols = list(range(1,22))
 
-      plotted_data = [[] for x in xrange(len(cols))]
+      plotted_data = [[] for x in range(len(cols))]
 
       x_indices = []
       for data_point in data[1:]:
@@ -145,11 +145,11 @@ def combined_stats_over_time(label,
 
   by_run = [stats_over_time(session, run, extract_fn, combine_fn, no_data)
             for run, session in runs]
-  max_len = max(map(len, by_run))
+  max_len = max(list(map(len, by_run)))
 
   by_run_streams = [Stream() << x << repeat(x[-1], max_len-len(x))
                     for x in by_run]
-  by_quanta = zip(*by_run_streams[:])
+  by_quanta = list(zip(*by_run_streams[:]))
 
   # TODO: Fix this, this variable should be configurable
   stats_quanta = 10
@@ -252,10 +252,10 @@ def get_values(labels):
       dir_label_runs[run_label(tr)][run_label(tr)].append((tr, db))
   all_run_ids = list()
   returned_values = {}
-  for d, label_runs in dir_label_runs.iteritems():
-    all_run_ids = map(_[0].id, itertools.chain(*label_runs.values()))
-    session = label_runs.values()[0][0][1]
-    objective = label_runs.values()[0][0][0].objective
+  for d, label_runs in dir_label_runs.items():
+    all_run_ids = list(map(_[0].id, itertools.chain(*list(label_runs.values()))))
+    session = list(label_runs.values())[0][0][1]
+    objective = list(label_runs.values())[0][0][0].objective
 
     q = (session.query(resultsdb.models.Result)
          .filter(resultsdb.models.Result.tuning_run_id.in_(all_run_ids))
@@ -285,6 +285,6 @@ def get_values(labels):
   return returned_values
 
 if __name__ == '__main__':
-    labels = [u'timeouts', u'always_reorder', u'add_store_at', u'all_options']
+    labels = ['timeouts', 'always_reorder', 'add_store_at', 'all_options']
     get_values(labels)
-    print get_all_labels()
+    print(get_all_labels())

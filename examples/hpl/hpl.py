@@ -91,7 +91,7 @@ class HPLinpack(MeasurementInterface):
       '''
       called at the end of autotuning with the best resultsdb.models.Configuration
       '''
-      print "Final configuration", configuration.data
+      print("Final configuration", configuration.data)
             
 if __name__ == '__main__':
   args = parser.parse_args()

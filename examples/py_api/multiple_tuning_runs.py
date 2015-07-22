@@ -63,7 +63,7 @@ def main():
             create_test_tuning_run('sqlite:////tmp/b.db'),
             create_test_tuning_run('sqlite:////tmp/c.db')]
     test_funcs = [test_func1, test_func2, test_func3]
-    for x in xrange(100):
+    for x in range(100):
       for api, test_func in zip(apis, test_funcs):
         desired_result = api.get_next_desired_result()
         if desired_result is None:
@@ -76,7 +76,7 @@ def main():
     for api in apis:
       api.finish()
 
-    print('best x configs: {}'.format(best_cfgs))
+    print(('best x configs: {}'.format(best_cfgs)))
 
 if __name__ == '__main__':
   main()

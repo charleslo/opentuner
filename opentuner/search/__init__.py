@@ -1,6 +1,6 @@
 
-import driver
-import objective
-import plugin
-import technique
+from . import driver
+from . import objective
+from . import plugin
+from . import technique
 

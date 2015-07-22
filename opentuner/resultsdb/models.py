@@ -8,7 +8,7 @@ from sqlalchemy import (
 import sqlalchemy
 import re
 
-from cPickle import dumps, loads
+from pickle import dumps, loads
 from gzip import zlib
 class CompressedPickler(object):
   @classmethod

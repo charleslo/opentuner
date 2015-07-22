@@ -61,7 +61,7 @@ class SearchDriver(DriverBase):
     if self.args.list_techniques:
       techniques, generators = technique.all_techniques()
       for t in techniques:
-        print t.name
+        print(t.name)
       sys.exit(0)
 
     if self.args.generate_bandit_technique:
@@ -149,7 +149,7 @@ class SearchDriver(DriverBase):
   def run_generation_techniques(self):
     tests_this_generation = 0
     self.plugin_proxy.before_techniques()
-    for z in xrange(self.args.parallelism):
+    for z in range(self.args.parallelism):
       if self.seed_cfgs:
         config = self.get_configuration(self.seed_cfgs.pop())
         dr = DesiredResult(configuration=config,
@@ -231,7 +231,7 @@ class SearchDriver(DriverBase):
           rv = []
           for plugin in plugins:
             rv.append(getattr(plugin, method_name)(*args, **kwargs))
-          return filter(lambda x: x is not None, rv)
+          return [x for x in rv if x is not None]
 
         return plugin_method_proxy
 
@@ -251,7 +251,7 @@ class SearchDriver(DriverBase):
     no_tests_generations = 0
 
     # prime pipeline with tests
-    for z in xrange(self.args.pipelining):
+    for z in range(self.args.pipelining):
       self.run_generation_techniques()
       self.generation += 1
 

@@ -7,7 +7,7 @@ from opentuner.search import manipulator
 def faked_random(nums):
   f = fake_random(nums)
   def inner(*args, **kwargs):
-    return f.next()
+    return next(f)
   return inner
 
 def fake_random(nums):
